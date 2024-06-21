@@ -1011,3 +1011,4 @@ components:
       type: Link
       layout_properties: {row: JUWDTC, width_xs: 1, col_xs: 11, width: 93.6875}
       name: link_3
+slots: {}
