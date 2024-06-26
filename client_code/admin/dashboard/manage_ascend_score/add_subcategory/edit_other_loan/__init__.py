@@ -35,7 +35,7 @@ class edit_other_loan(edit_other_loanTemplate):
       # Save changes to the database
       self.selected_row.update()
 
-      existing_min_points = [row["min_points"] for row in app_tables.categories.search(group_name="other_loan")]
+      existing_min_points = [row["min_points"] for row in app_tables.fin_admin_ascend_categories.search(group_name="other_loan")]
       max_points = max(existing_min_points + [updated_points])
 
       existing_group_row  = app_tables.fin_admin_ascend_groups.get(group_name="other_loan")
@@ -47,7 +47,7 @@ class edit_other_loan(edit_other_loanTemplate):
           group_name="other_loan", max_points=max_points)
 
       alert("Changes saved successfully!")
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def delete_click(self, **event_args):
     """This method is called when the Delete button is clicked"""
@@ -68,7 +68,7 @@ class edit_other_loan(edit_other_loanTemplate):
           group_name="other_loan", max_points=max_points)
 
       # Optionally, navigate to a different form or perform other actions
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def home_button(self, **event_args):
     """This method is called when the button is clicked"""
@@ -76,4 +76,4 @@ class edit_other_loan(edit_other_loanTemplate):
 
   def button_1_copy_3_click(self, **event_args):
     """Cancel button click event"""
-    open_form('admin.dashboard.manage_ascend.add_subcategory')
+    open_form('admin.dashboard.manage_ascend_score.add_subcategory')

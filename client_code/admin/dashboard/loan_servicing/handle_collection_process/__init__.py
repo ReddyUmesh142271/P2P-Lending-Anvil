@@ -60,6 +60,7 @@ class handle_collection_process(handle_collection_processTemplate):
           'street_adress_1': street_adress_1,
           'guarantor_address': guarantor_address,
           'another_person' : another_person,
+          'street_adress_2':street_adress_2,
           
         })
     return data

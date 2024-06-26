@@ -29,7 +29,7 @@ class view_profile_2(view_profile_2Template):
             # self.label_12.text = self.loan_data['min_amount']
             # self.label_14.text = self.loan_data['max_amount']
             self.label_16.text = self.loan_data['interest_rate']
-            self.label_18.text = self.loan_data['borrower_loan_created_timestamp']
+            self.label_18.text = self.loan_data['borrower_loan_created_timestamp'].strftime('%d-%m-%Y')
             self.label_20.text = self.loan_data['total_repayment_amount']
             # self.label_22.text = self.loan_data['total_payments_made']
             # self.label_24.text = self.loan_data['member_rom']

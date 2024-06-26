@@ -32,11 +32,19 @@ def add_email_and_user_id(email_id ,password, usertype):
     generated_id = generate_user_id()
     signup_date=datetime.now()
     hashed_password = anvil.server.call('hash_password_2', password)
-
+    existing_user = app_tables.users.get(email=email_id)
+    if existing_user:
+        # Update existing user row
+        existing_user['password_hash'] = hashed_password
+        existing_user['enabled'] = True  # Assuming you want to enable the user upon creation/update
+        existing_user['signed_up'] = signup_date
+    else:
+        # Create new user row
+        app_tables.users.add_row(email=email_id, password_hash=hashed_password, enabled=True, signed_up=signup_date)  
     app_tables.fin_user_profile.add_row(email_user=email_id, customer_id=generated_id,registration_approve=False,profile_status=False,mobile_check=False,last_confirm=False, usertype = usertype)
     app_tables.fin_user_ascend_score.add_row(borrower_customer_id=generated_id,borrower_email_id=email_id)
     app_tables.fin_wallet.add_row(user_email=email_id,customer_id=generated_id,wallet_amount=0,wallet_id=wallet.create_wallet_id(),status=False)
-    app_tables.users.add_row(email=email_id,password_hash=hashed_password,enabled=True,signed_up=signup_date)
+    #app_tables.users.add_row(email=email_id,password_hash=hashed_password,enabled=True,signed_up=signup_date)
 #----- end hear ----- #
 
 # The method check for new user or existing user using email from current user ---> start hear

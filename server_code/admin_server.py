@@ -9,54 +9,52 @@ from anvil.tables import app_tables
 import anvil.server
 from anvil import *
 import math
-# from anvil.google.maps import geocode
-
-
-
-def haversine(lat1, lon1, lat2, lon2):
-    R = 6371  # Radius of the Earth in km
-    dLat = math.radians(lat2 - lat1)
-    dLon = math.radians(lon2 - lon1)
-    a = math.sin(dLat / 2) ** 2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dLon / 2) ** 2
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    distance = R * c  # Distance in km
-    return distance
+import requests
+import random
+from email.message import EmailMessage
+import bcrypt
+import anvil.pdf
 
 @anvil.server.callable
-def get_coordinates(address):
-    result = geocode(address)
-    if result:
-        location = result['results'][0]['geometry']['location']
-        return {"lat": location['lat'], "lng": location['lng']}
+def check_user_profile(email):
+    return app_tables.users.get(email=email)
+
+@anvil.server.callable
+def send_email_otp(email):
+    otp = random.randint(100000, 999999)
+
+    from_email = "gtpltechnologies@gmail.com"  # Use your verified email address
+    subject = "OTP Verification"
+    content = f"Your OTP is: {otp}"
+
+    try:
+        anvil.email.send(to=email, from_address=from_email, subject=subject, text=content)
+        return otp  # If successful, return OTP
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        return str(e)  # Return error message
+@anvil.server.callable
+def update_user_status(email, email_verified):
+    user = app_tables.users.get(email=email)
+    if user:
+        user['email_verified'] = email_verified
     else:
-        raise ValueError(f"Address '{address}' could not be geocoded.")
+        # If user does not exist, create a new row
+        user = app_tables.users.add_row(email=email, email_verified=email_verified)
+    return True
 
 @anvil.server.callable
-def find_nearby_field_engineers(customer_address, radius=50):  # radius in km
-    customer_coords = get_coordinates(customer_address)
-    lat, lng = customer_coords['lat'], customer_coords['lng']
-    
-    field_engineers = app_tables.fin_field_engineers.search()
-    nearby_engineers = []
+def create_receipt_pdf(name, image_source,selected_row):    
+    # Your PDF creation logic here
+    pdf = anvil.pdf.PDFRenderer(landscape=True).render_form("admin.dashboard.accounting.payment_receipt.emi_details.payment_receipts",selected_row = selected_row)  
+    return pdf
 
-    for fe in field_engineers:
-        fe_coords = get_coordinates(fe['address'])
-        distance = haversine(lat, lng, fe_coords['lat'], fe_coords['lng'])
-        if distance <= radius:
-            nearby_engineers.append({
-                "name": fe['full_name'],
-                "location": f"{fe_coords['lat']}, {fe_coords['lng']}",
-                "distance": distance
-            })
-
-    nearby_engineers.sort(key=lambda x: x['distance'])
-    return nearby_engineers
-
-
-
-
-
-
+@anvil.server.callable
+def create_receipt_pdf1(name, image_source,selected_row):    
+    # Your PDF creation logic here
+    pdf = anvil.pdf.PDFRenderer(landscape=True).render_form("admin.dashboard.accounting.payment_receipt.emi_details")  
+    return pdf
+  
 # Define server function to navigate to the Invest Now form
 @anvil.server.callable
 def open_invest_now_form():
@@ -65,7 +63,6 @@ def open_invest_now_form():
 @anvil.server.callable
 def open_apply_for_loan_form():
     open_form("bank_users.main_form.basic_registration_form")
-
 
 
 @anvil.server.callable
@@ -355,3 +352,110 @@ def get_combined_user_and_guarantor_data_2():
         })
 
     return combined_data
+
+
+
+
+
+
+@anvil.server.callable
+def update_fin_platform_fees():
+    # Step 1: Calculate the number of lenders
+    num_lenders = len(app_tables.fin_user_profile.search(usertype='lender'))
+    
+    # Step 2: Calculate the number of borrowers
+    num_borrowers = len(app_tables.fin_user_profile.search(usertype='borrower'))
+    
+    # Step 3: Calculate the number of products
+    num_products = len(app_tables.fin_product_details.search())
+
+    # Step 4: Calculate the total amount invested by lenders
+    total_lenders_invested = sum(lender['lender_total_commitments'] or 0 for lender in app_tables.fin_lender.search())
+
+    # Step 5: Calculate the number of unique borrowers who have taken a loan
+    borrower_ids = set()
+    for loan in app_tables.fin_loan_details.search():
+        borrower_ids.add(loan['borrower_customer_id'])
+    total_borrowers_loan_taken = len(borrower_ids)
+    
+    # Step 6: Determine the most used product name
+    product_usage = {}
+    for loan in app_tables.fin_loan_details.search():
+        product_name = loan['product_name']
+        if product_name in product_usage:
+            product_usage[product_name] += 1
+        else:
+            product_usage[product_name] = 1
+    
+    # If no loans found, handle it gracefully
+    if not product_usage:
+        return "No loans found to determine the most used product."
+    
+    # Find the product name with the highest count
+    most_used_product_name = max(product_usage, key=product_usage.get)
+    
+    # Step 7: Update the fin_platform_fees table
+    fee_record = app_tables.fin_platform_details.get()  # Assuming there's only one record, or adapt as needed
+
+    # If no fee record exists, add a new row
+    if fee_record is None:
+        fee_record = app_tables.fin_platform_details.add_row()
+    
+    fee_record.update(
+        total_lenders=num_lenders,
+        total_borrowers=num_borrowers,
+        total_products_count=num_products,
+        most_used_product=most_used_product_name,
+        total_borrowers_loan_taken=total_borrowers_loan_taken,
+        total_lenders_invested=total_lenders_invested
+    )
+
+    # return "Platform fees updated successfully."
+
+
+
+
+# @anvil.server.callable
+# def update_fin_platform_fees():
+#     # Step 1: Calculate the number of lenders
+#     num_lenders = len(app_tables.fin_user_profile.search(usertype='lender'))
+    
+#     # Step 2: Calculate the number of borrowers
+#     num_borrowers = len(app_tables.fin_user_profile.search(usertype='borrower'))
+    
+#     # Step 3: Calculate the number of products
+#     num_products = len(app_tables.fin_product_details.search())
+
+#     total_borrowers_loan_taken = len(app_tables.fin_loan_details.search())
+    
+#     # Step 4: Determine the most used product name
+#     product_usage = {}
+#     for loan in app_tables.fin_loan_details.search():
+#         product_name = loan['product_name']
+#         if product_name in product_usage:
+#             product_usage[product_name] += 1
+#         else:
+#             product_usage[product_name] = 1
+    
+#     # If no loans found, handle it gracefully
+#     if not product_usage:
+#         return "No loans found to determine the most used product."
+    
+#     # Find the product name with the highest count
+#     most_used_product_name = max(product_usage, key=product_usage.get)
+    
+#     # Step 5: Update the fin_platform_fees table
+#     fee_record = app_tables.fin_platform_details.get()  # Assuming there's only one record, or adapt as needed
+
+#     # If no fee record exists, add a new row
+#     if fee_record is None:
+#         fee_record = app_tables.fin_platform_details.add_row()
+    
+#     fee_record.update(
+#         total_lenders=num_lenders,
+#         total_borrowers=num_borrowers,
+#         total_products_count=num_products,
+#         most_used_product=most_used_product_name,
+#         total_borrowers_loan_taken = total_borrowers_loan_taken
+#     )
+

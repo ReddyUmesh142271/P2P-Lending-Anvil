@@ -86,67 +86,52 @@ class my_returns(my_returnsTemplate):
 
         # Debugging: Check if the plot is assigned correctly
         print(f"Assigned figure to plot_1: {self.plot_1.data}")
-
+    
     def create_user_bar_chart(self):
-        # Fetch investment data for the specific user
-        investments = app_tables.fin_lender.search(customer_id=self.user_id)
-        
-        # Debugging: Print fetched investments
-        print(f"Fetched investments for user {self.user_id}: {list(investments)}")
-        
-        # Initialize variables to store total investments and returns
-        total_investment = 0
-        total_returns = 0
-        
-        for investment in investments:
-            total_investment += investment['investment']
-            total_returns += investment['return_on_investment']
-  
-        # Calculate the percentage return
-        percentage_return = (total_returns / total_investment) * 100 if total_investment != 0 else 0
-
-        # Debugging: Print aggregated values
-        print(f"Total Investment: {total_investment}, Total Returns: {total_returns}, Percentage Return: {percentage_return:.2f}%")
-  
-        # Prepare data for bar chart
-        categories = ['Investment', 'Returns']
-        values = [total_investment, total_returns]
-  
-        # Create bar chart trace
-        trace = go.Bar(x=categories, y=values, marker_color=['blue', 'green'])
-  
-        # Create annotations
-        annotations = []
-        annotations.append(dict(
-            x='Returns',
-            y=total_returns + (max(values) * 0.01),  # Position above the returns bar
-            text=f"{percentage_return:.2f}%",
-            showarrow=False,
-            font=dict(color='black', size=8, weight='bold'),  # Set the color of the text to dark black and bold
-            xanchor="left"
-        ))
-  
-        # Create a layout with annotations
-        layout = go.Layout(
-            title=dict(text='Investment and Returns ', font=dict(size=16, weight='bold')),
-            xaxis=dict(title='Category', tickfont=dict(size=10, weight='bold')),
-            yaxis=dict(title='Amount (0.1M=100000)'),
-            barmode='group',  # Use group mode to display bars side by side
-            annotations=annotations
-        )
-  
-        # Create a figure
-        fig = go.Figure(data=[trace], layout=layout)
-  
-        # Debugging: Print the figure to ensure it's created
-        print(f"Created figure: {fig}")
-  
-        # Set the plot in the Plot component
-        self.plot_2.data = fig['data']
-        self.plot_2.layout = fig['layout']
-  
-        # Debugging: Check if the plot is assigned correctly
-        print(f"Assigned figure to plot_2: {self.plot_2.data}")
+      # Fetch investment data
+      investments = app_tables.fin_lender.search()
+      
+      # Debugging: Print fetched investments
+      print(f"Fetched investments: {list(investments)}")
+      
+      # Initialize a dictionary to store total return_on_investment for each customer_id
+      customer_returns = {}
+      
+      for investment in investments:
+          customer_id = investment['customer_id']
+          if customer_id not in customer_returns:
+              customer_returns[customer_id] = 0
+          customer_returns[customer_id] += investment['return_on_investment']
+      
+      # Convert the dictionary to a list of tuples and sort by return_on_investment in descending order
+      sorted_returns = sorted(customer_returns.items(), key=lambda x: x[1], reverse=True)
+      
+      # Prepare data for the bar chart
+      categories = [item[0] for item in sorted_returns]  # customer_ids
+      values = [item[1] for item in sorted_returns]  # return_on_investments
+      
+      # Create bar chart trace
+      trace = go.Bar(x=categories, y=values, marker_color='green')
+      
+      # Create a layout
+      layout = go.Layout(
+          title=dict(text='Return on Investment by Customer', font=dict(size=16, weight='bold')),
+          xaxis=dict(title='Customer ID', tickfont=dict(size=10, weight='bold')),
+          yaxis=dict(title='Return on Investment'),
+          barmode='group'
+      )
+      
+      # Create a figure
+      fig = go.Figure(data=[trace], layout=layout)
+      
+      # Debugging: Print the figure to ensure it's created
+      print(f"Created figure: {fig}")
+      
+      # Set the plot in the Plot component
+      self.plot_2.figure = fig
+      
+      # Debugging: Check if the plot is assigned correctly
+      print(f"Assigned figure to plot_3: {self.plot_2.figure}")
 
     def button_1_click(self, **event_args):
         """This method is called when the button is clicked"""

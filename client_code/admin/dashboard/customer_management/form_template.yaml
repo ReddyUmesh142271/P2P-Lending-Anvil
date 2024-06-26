@@ -64,3 +64,8 @@ components:
     layout_properties: {grid_position: 'JFGEHI,VYIDYK'}
     event_bindings: {click: button_3_click}
     name: button_3
+- name: button_4
+  properties: {text: Back, background: '#05264d', foreground: white, icon: 'fa:backward'}
+  type: Button
+  layout_properties: {grid_position: 'EVCMGW,MJMKUZ'}
+  event_bindings: {click: button_4_click}

@@ -1,25 +1,244 @@
-container: {type: ColumnPanel}
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"EQLDIN":50,"GMGRBH":10}'}
 components:
 - name: home_button_admin_1
   properties: {}
   type: form:admin.dashboard.home_button_admin
   layout_properties: {grid_position: 'URKXLI,VZJYMU', full_width_row: true}
+- name: label_1
+  properties: {text: '                                    MIS Reports', role: title, align: center, bold: true}
+  type: Label
+  layout_properties: {grid_position: 'STOWQU,EQLDIN', full_width_row: true}
 - name: button_1
   properties: {role: outlined-button, bold: true, align: right, spacing_above: small, background: '#05264d', icon: 'fa:angle-double-left', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: Back}
   type: Button
   layout_properties: {grid_position: 'STOWQU,GMGRBH', full_width_row: true}
   event_bindings: {click: button_1_click}
+- name: label_2
+  properties: {text: Platform Details, align: center, bold: true, role: outlined-card, foreground: '', background: 'theme:Secondary Container', font_size: 23}
+  type: Label
+  layout_properties: {grid_position: 'WXCTJG,VADUMI'}
+- name: column_panel_3
+  properties: {col_widths: '{"GOAUFZ":25,"CROXTR":35,"TISSDH":25,"DZSCDQ":35,"LQENWC":25,"IKPNTR":35,"EJSYYR":25,"IBXIMK":35,"HLDXZV":25,"VZSHEO":35,"DKMZEM":25,"NUENCT":35,"FFHTOW":20,"XSWMWC":40,"CHXAAW":25,"DAAYQI":35,"NQVRUU":25,"LUGAQT":35}'}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'DOSDSC,CBOFSO'}
+  components:
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {grid_position: 'OIUKHQ,FFHTOW'}
+  - name: label_3
+    properties: {text: 'Total Lenders:', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC SCMBGF,GOAUFZ'}
+  - name: label_4
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC SCMBGF,CROXTR'}
+  - name: label_5
+    properties: {text: 'Total Borrowers :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC LRYRVO,TISSDH'}
+  - name: label_6
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC LRYRVO,DZSCDQ'}
+  - name: label_7
+    properties: {text: 'Total Lenders Investment :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC ZJLHCZ,LQENWC'}
+  - name: label_8
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC ZJLHCZ,IKPNTR'}
+  - name: label_9
+    properties: {text: 'Total Borrowers taken Loans :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC KFLGBS,EJSYYR'}
+  - name: label_10
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC KFLGBS,IBXIMK'}
+  - name: label_11
+    properties: {text: 'Total Products :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC AVAVVK,HLDXZV'}
+  - name: label_12
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC AVAVVK,VZSHEO'}
+  - name: label_13
+    properties: {text: 'Most Used Product :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC ARQOOQ,DKMZEM'}
+  - name: label_14
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC ARQOOQ,NUENCT'}
+  - name: label_15
+    properties: {text: 'Platform Fee :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC HUDGNI,CHXAAW'}
+  - name: label_16
+    properties: {bold: true}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC HUDGNI,DAAYQI'}
+  - name: label_17
+    properties: {text: 'Lender Share :', bold: true, font_size: 16}
+    type: Label
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC HAMYDJ,NQVRUU'}
+  - name: link_1
+    properties: {bold: true, foreground: green, tooltip: Click for more Details, underline: true, italic: true}
+    type: Link
+    layout_properties: {grid_position: 'OIUKHQ,XSWMWC HAMYDJ,LUGAQT'}
+    data_bindings: []
+    event_bindings: {click: link_1_click}
 - name: column_panel_1
   properties: {}
   type: ColumnPanel
-  layout_properties: {grid_position: 'HTLETU,NGJUAZ', full_width_row: true}
+  layout_properties: {grid_position: 'KYNVUW,LOMIKA', full_width_row: true}
   components:
-  - name: label_1
-    properties: {text: MIS Reports, role: title, align: center, bold: true}
-    type: Label
-    layout_properties: {grid_position: 'PSZIOH,LDSHGJ', full_width_row: true}
+  - name: content_panel_4
+    properties: {col_widths: '{}', background: white, role: elevated-card}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'XYXMAS,DVWPUB'}
+    components:
+    - name: image_4_copy_copy_4
+      properties: {source: _/theme/admin/dashboard/accounting/mis-reports/EOD%20reports.png, display_mode: shrink_to_fit, height: '100', visible: true}
+      type: Image
+      layout_properties: {grid_position: 'QGZTNW,PVJEPO'}
+      event_bindings: {mouse_up: image_4_copy_mouse_up}
+    - name: add_people_copy_4
+      properties:
+        text: |
+          EOD reports
+        font_size: 16
+        foreground: black
+        bold: true
+        visible: true
+        font: ''
+      type: Button
+      layout_properties: {grid_position: 'GMECOB,ATAMRQ'}
+      event_bindings: {click: button_9_click}
+  - name: content_panel_7
+    properties: {col_widths: '{}', background: white, role: elevated-card}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'XYXMAS,CFXLFX'}
+    components:
+    - name: image_4_copy_copy_5
+      properties: {source: _/theme/admin/dashboard/accounting/mis-reports/Behavioural%20Report.png, display_mode: shrink_to_fit, height: 99.20001220703125, visible: true}
+      type: Image
+      layout_properties: {grid_position: 'CGQKOF,RHYSHW'}
+      event_bindings: {mouse_up: image_4_copy_copy_5_mouse_up}
+    - name: add_people_copy_5
+      properties:
+        text: |
+          Behavioural Report
+        font_size: 16
+        foreground: black
+        bold: true
+        visible: true
+        font: ''
+      type: Button
+      layout_properties: {grid_position: 'GMECOB,ATAMRQ'}
+      event_bindings: {click: button_9_click}
+  - name: content_panel_5
+    properties: {col_widths: '{}', background: white, role: elevated-card}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'XYXMAS,NRBLTP', full_width_row: true}
+    components:
+    - name: image_4_copy
+      properties: {source: _/theme/admin/dashboard/accounting/mis-reports/Summary%20Reports.png, display_mode: shrink_to_fit, height: '100', visible: true}
+      type: Image
+      layout_properties: {grid_position: 'QGZTNW,PVJEPO', full_width_row: true}
+      event_bindings: {mouse_up: image_4_copy_mouse_up}
+    - name: add_people
+      properties:
+        text: |
+          Summary Reports
+        font_size: 16
+        foreground: black
+        bold: true
+        visible: true
+        font: ''
+      type: Button
+      layout_properties: {grid_position: 'GMECOB,ATAMRQ'}
+      event_bindings: {click: button_9_click}
+  - name: content_panel_6
+    properties: {col_widths: '{}', background: white, role: elevated-card}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'XYXMAS,PLLEUZ', full_width_row: false}
+    components:
+    - name: image_4_copy_copy_6
+      properties: {source: _/theme/admin/dashboard/accounting/mis-reports/liability%20on%20company%20report.png, display_mode: shrink_to_fit, height: 78.39996337890625, visible: true}
+      type: Image
+      layout_properties: {grid_position: 'QGZTNW,PVJEPO'}
+      event_bindings: {mouse_up: image_4_copy_mouse_up}
+    - name: add_people_copy_6
+      properties:
+        text: |
+          liability on company report
+        font_size: 16
+        foreground: black
+        bold: true
+        visible: true
+        font: ''
+      type: Button
+      layout_properties: {grid_position: 'GMECOB,ATAMRQ'}
+      event_bindings: {click: button_9_click}
+- name: spacer_3
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'NPTPGS,THQKED', full_width_row: true}
+- name: column_panel_2
+  properties: {col_widths: '{"MBFSBH":30,"RTYBEJ":30}'}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'RSKQWA,SKIHKI', full_width_row: true}
+  components:
   - name: plot_1
-    properties: {height: '600', spacing_above: medium, spacing_below: medium}
+    properties: {height: '850', spacing_above: medium, spacing_below: medium}
     type: Plot
-    layout_properties: {grid_position: 'CVQQIW,JAPZKJ', full_width_row: false}
+    layout_properties: {grid_position: 'GCAILA,MBFSBH', full_width_row: true}
+  - name: plot_2
+    properties: {height: '850', spacing_above: medium, spacing_below: medium}
+    type: Plot
+    layout_properties: {grid_position: 'GCAILA,RTYBEJ', full_width_row: true}
+- name: spacer_4
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'MNDACQ,EALIOZ'}
+- name: plot_3
+  properties: {height: '650'}
+  type: Plot
+  layout_properties: {grid_position: 'NSEPUJ,UOZAKQ'}
+- name: plot_4
+  properties: {height: '650'}
+  type: Plot
+  layout_properties: {grid_position: 'ZHVEGZ,OWIBDI'}
+  event_bindings: {click: plot_4_click}
+- name: risk_level_label
+  properties: {align: center, visible: false, text: Loan Risk Distribution, bold: true}
+  type: Label
+  layout_properties: {grid_position: 'AMPXZS,TMMMUQ'}
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: JKSDUP, title: Loan Id, data_key: column_1}
+    - {id: VJQQOR, title: Product Name, data_key: column_2}
+    - {id: OJLQEN, title: Borrower Id, data_key: column_3}
+    - {id: QKLUMJ, data_key: column_1, title: Borrower Name}
+    - {id: JKEGYV, data_key: column_2, title: Loan Amount}
+    role: tonal-data-grid
+    visible: false
+  type: DataGrid
+  components:
+  - name: repeating_panel_loan_details
+    properties: {item_template: admin.dashboard.accounting.mis_reports.RowTemplate61}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'VQEYRC,MHKVTK'}
+- name: spacer_5
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'NMSRRR,XGUBBR'}
 is_package: true

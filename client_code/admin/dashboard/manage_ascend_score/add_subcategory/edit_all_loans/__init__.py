@@ -53,7 +53,7 @@ class edit_all_loans(edit_all_loansTemplate):
           group_name="all_loans", max_points=max_points)
 
       alert("Changes saved successfully!")
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def delete_click(self, **event_args):
     """This method is called when the Delete button is clicked"""
@@ -74,7 +74,7 @@ class edit_all_loans(edit_all_loansTemplate):
           group_name="all_loans", max_points=max_points)
 
       # Optionally, navigate to a different form or perform other actions
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def home_button(self, **event_args):
     """This method is called when the button is clicked"""
@@ -83,4 +83,4 @@ class edit_all_loans(edit_all_loansTemplate):
   def button_1_copy_3_click(self, **event_args):
     """Cancel button click event"""
     # Close the form without saving changes
-    open_form('admin.dashboard.manage_ascend.add_subcategory')
+    open_form('admin.dashboard.manage_ascend_score.add_subcategory')

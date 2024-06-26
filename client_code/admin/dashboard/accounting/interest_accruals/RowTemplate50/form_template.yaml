@@ -32,7 +32,7 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''total_interest_amount'']', writeback: false}
 - name: link_1
-  properties: {align: center}
+  properties: {align: center, bold: true}
   type: Link
   layout_properties: {column: VJQQOR}
   data_bindings:

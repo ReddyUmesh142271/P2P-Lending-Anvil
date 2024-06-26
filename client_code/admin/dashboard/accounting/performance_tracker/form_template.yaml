@@ -39,7 +39,7 @@ components:
       layout_properties: {grid_position: 'GMECOB,ATAMRQ'}
       event_bindings: {click: button_9_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_8
       layout_properties: {grid_position: 'ZSRAFX,IGQCVQ'}
   - name: spacer_6
@@ -67,7 +67,7 @@ components:
       layout_properties: {grid_position: 'RVCVIZ,SJZUBG'}
       event_bindings: {click: button_2_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_12
       layout_properties: {grid_position: 'JRTFDM,ASYFPY'}
   - name: content_panel_copy_copy_3_copy_3_copy_copy_copy_2_copy_10
@@ -91,7 +91,7 @@ components:
       layout_properties: {grid_position: 'TFDFVQ,VTCDTE'}
       event_bindings: {click: button_14_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_6
       layout_properties: {grid_position: 'TCXXQY,JFMVYV'}
   - name: spacer_8
@@ -114,7 +114,7 @@ components:
       layout_properties: {grid_position: 'TSDWZF,VCNTGA'}
       event_bindings: {click: button_10_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_13
       layout_properties: {grid_position: 'BHUYJL,VTWHIY'}
   - name: content_panel_copy_copy_3_copy_3_copy_copy_copy_2_copy_5
@@ -137,7 +137,7 @@ components:
       layout_properties: {grid_position: 'TNRHQQ,HOQMDP'}
       event_bindings: {click: button_11_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_14
       layout_properties: {grid_position: 'CKPODC,ZXEPQW'}
   - name: spacer_2
@@ -163,7 +163,7 @@ components:
       layout_properties: {grid_position: 'QLBPLX,JPLEMY'}
       event_bindings: {click: button_3_click}
     - type: Label
-      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: black, spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       name: label_4
       layout_properties: {grid_position: 'MNJOZT,DKVWZH'}
   - name: spacer_5

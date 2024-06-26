@@ -26,9 +26,11 @@ class add_field_engineer(add_field_engineerTemplate):
         gender_options = [row['gender'] for row in app_tables.fin_gender.search()]
         # Set the dropdown options
         self.gender.items = gender_options
-        role_options = [row['role'] for row in app_tables.fin_admin_role.search()]
-        # Set the dropdown options
-        self.role.items = role_options
+
+        self.role.text = 'field engineer'
+        # role_options = [row['role'] for row in app_tables.fin_admin_role.search()]
+        # # Set the dropdown options
+        # self.role.items = role_options
         # user = anvil.users.get_user()
         # Check if a user is logged in
         # if user:
@@ -49,7 +51,7 @@ class add_field_engineer(add_field_engineerTemplate):
         address = self.address_text_box.text
         dob = self.dob.date
         gender = self.gender.selected_value
-        role = self.role.selected_value
+        role = self.role.text
         password = self.create_password_text.text
         retype = self.re_enter_password.text
         created_date = date.today()

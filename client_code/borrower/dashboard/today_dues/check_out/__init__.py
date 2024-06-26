@@ -1083,3 +1083,7 @@ class check_out(check_outTemplate):
     
     # Open the part_payment form and pass loan_details as a parameter
       open_form('borrower.dashboard.today_dues.check_out.part_payment', loan_details=loan_details, selected_row=self.selected_row)
+
+    def button_1_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      open_form('borrower.dashboard.today_dues')

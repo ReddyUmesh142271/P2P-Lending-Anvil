@@ -1,0 +1,38 @@
+container: {type: ColumnPanel}
+components:
+- name: home_button_admin_1_copy
+  properties: {}
+  type: form:admin.dashboard.home_button_admin
+  layout_properties: {grid_position: 'WMLDVE,PQFJZY', full_width_row: true}
+- name: label_1
+  properties: {text: Closed Loans, align: center, bold: true, font_size: 18}
+  type: Label
+  layout_properties: {grid_position: 'WCUYMY,BHROYO'}
+- name: spacer_1
+  properties: {height: 8}
+  type: Spacer
+  layout_properties: {grid_position: 'QVIGQB,XOWNTL'}
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: JKSDUP, title: User Photo, data_key: column_1}
+    - {id: VJQQOR, title: Product Name, data_key: column_2}
+    - {id: OJLQEN, title: Loan Id, data_key: column_3}
+    - {id: WSKKSG, data_key: column_4, title: Borrower Full Name}
+    - {id: DXKVUN, data_key: column_5, title: Mobile}
+    - {id: ZYNNEA, data_key: column_6, title: Borrower Email Id, width: 175, expand: false}
+    - {id: UWQHCB, data_key: column_7, title: Loan Amount}
+    - {id: GQFXJS, data_key: column_8, title: Loan Updated Status}
+    role: tonal-data-grid
+  type: DataGrid
+  components:
+  - name: repeating_panel_1
+    properties: {item_template: admin.dashboard.accounting.performance_tracker.closed_loans.RowTemplate55}
+    type: RepeatingPanel
+  layout_properties: {grid_position: 'ORXJKL,ZBBNUZ', full_width_row: true}
+- name: button_1
+  properties: {text: Back, background: '#05264d', foreground: white, icon: 'fa:backward'}
+  type: Button
+  layout_properties: {grid_position: 'HPBILE,NXZHZU'}
+  event_bindings: {click: button_1_click}
+is_package: true

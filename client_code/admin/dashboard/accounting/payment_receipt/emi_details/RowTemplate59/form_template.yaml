@@ -1,0 +1,45 @@
+is_package: true
+container: {type: DataRowPanel}
+components:
+- name: link_1
+  properties: {align: center}
+  type: Link
+  layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''emi_number'']', writeback: false}
+- name: label_1
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: VJQQOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''loan_id'']', writeback: false}
+- name: label_2
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: OJLQEN}
+  data_bindings:
+  - {property: text, code: 'self.item[''borrower_name'']', writeback: false}
+- name: label_3
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: XJKXIA}
+  data_bindings:
+  - {property: text, code: 'self.item[''lender_name'']', writeback: false}
+- name: label_4
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: UCBVXJ}
+  data_bindings:
+  - {property: text, code: 'self.item[''amount_paid'']', writeback: false}
+- name: label_5
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: WDVPOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''total_remaining_amount'']', writeback: false}
+- name: label_6
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: UTMXUU}
+  data_bindings:
+  - {property: text, code: 'self.item[''remaining_tenure'']', writeback: false}

@@ -1,0 +1,46 @@
+is_package: true
+container: {type: DataRowPanel}
+components:
+- name: link_1
+  properties: {align: center, bold: true}
+  type: Link
+  layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''loan_id'']', writeback: false}
+  event_bindings: {click: link_1_click}
+- name: label_1
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: VJQQOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''loan_amount'']', writeback: false}
+- name: label_2
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: OJLQEN}
+  data_bindings:
+  - {property: text, code: 'self.item[''borrower_name'']', writeback: false}
+- name: label_4
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: WHHXJX}
+  data_bindings:
+  - {property: text, code: 'self.item[''lender_name'']', writeback: false}
+- name: label_6
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: ZBXGXP}
+  data_bindings:
+  - {property: text, code: 'self.item[''total_repayment_amount'']', writeback: false}
+- name: label_7
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: ZORGFT}
+  data_bindings:
+  - {property: text, code: 'self.item[''interest_rate'']', writeback: false}
+- name: label_3
+  properties: {align: center}
+  type: Label
+  layout_properties: {column: RYTBYV}
+  data_bindings:
+  - {property: text, code: 'self.item[''tenure'']', writeback: false}

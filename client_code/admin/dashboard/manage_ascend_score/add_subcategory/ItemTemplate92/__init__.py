@@ -18,4 +18,4 @@ class ItemTemplate92(ItemTemplate92Template):
   def link_1_click(self, **event_args):
     """This method is called when the link is clicked"""
     item_data = self.item
-    open_form('admin.dashboard.manage_ascend.add_subcategory.edit_vehicle_loan',selected_row=item_data)
+    open_form('admin.dashboard.manage_ascend_score.add_subcategory.edit_vehicle_loan',selected_row=item_data)

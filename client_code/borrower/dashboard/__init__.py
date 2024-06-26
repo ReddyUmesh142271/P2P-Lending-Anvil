@@ -19,6 +19,7 @@ class dashboard(dashboardTemplate):
     self.email = self.email
     user_id = self.user_Id
     self.populate_loan_history()
+    self.update_platform_fees()
 
     wallet = app_tables.fin_wallet.get(customer_id=self.user_Id)
     if wallet:
@@ -36,6 +37,12 @@ class dashboard(dashboardTemplate):
       self.label_7.text = borrower['borrower_since']
       self.label_5.text = borrower['credit_limit']
 
+  def update_platform_fees(self, **event_args):
+      # Call the server function to update the fees
+      result = anvil.server.call('update_fin_platform_fees')
+      if result is not None:
+          alert(result)
+        
   def populate_loan_history(self):
     try:
       customer_loans = app_tables.fin_loan_details.search(borrower_customer_id=self.user_Id)

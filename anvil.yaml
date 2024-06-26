@@ -16,10 +16,10 @@ services:
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: bank_users.main_form}
+startup: {type: form, module: admin.dashboard}
 package_name: pip_install_reportlab
 allow_embedding: false
-name: P2P Lending App 1
+name: P2P Lending App clone 25/06/2024
 runtime_options:
   version: 3
   client_version: '3'
@@ -340,6 +340,32 @@ db_schema:
       admin_ui: {order: 2.5, width: 200}
       type: string
     title: fin_admin_ascend_categories
+  fin_platform_details:
+    client: full
+    server: full
+    columns:
+    - name: platform_returns
+      admin_ui: {order: 0, width: 200}
+      type: number
+    - name: total_lenders
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: total_borrowers
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: total_lenders_invested
+      admin_ui: {width: 200, order: 3}
+      type: number
+    - name: total_borrowers_loan_taken
+      admin_ui: {order: 4, width: 250}
+      type: number
+    - name: total_products_count
+      admin_ui: {width: 200, order: 5}
+      type: number
+    - name: most_used_product
+      admin_ui: {width: 200, order: 6}
+      type: string
+    title: fin_platform_details
   fin_lendor_employee_type:
     client: full
     server: full
@@ -579,15 +605,18 @@ db_schema:
     - name: usertype
       admin_ui: {width: 200, order: 10}
       type: string
-    - name: issue_occured
-      admin_ui: {width: 200}
-      type: string
-    - name: status
-      admin_ui: {width: 200}
-      type: bool
     - name: user_photo
       admin_ui: {width: 200}
       type: media
+    - name: customer_id
+      admin_ui: {width: 200}
+      type: number
+    - name: field_engineer
+      admin_ui: {width: 200, order: 15}
+      type: string
+    - name: status
+      admin_ui: {width: 200, order: 16}
+      type: bool
     title: fin_reported_problems
   fin_borrower_qualification:
     title: fin_borrower_qualification
@@ -792,13 +821,31 @@ db_schema:
       type: string
     title: fin_gender
   fin_platform_fees:
+    title: fin_platform_fees
     client: full
     server: full
     columns:
     - name: platform_returns
-      admin_ui: {order: 0, width: 200}
+      admin_ui: {width: 200}
       type: number
-    title: fin_platform_fees
+    - name: most_used_product
+      admin_ui: {width: 200}
+      type: string
+    - name: total_borrowers
+      admin_ui: {width: 200}
+      type: number
+    - name: total_borrowers_loan_taken
+      admin_ui: {width: 250}
+      type: number
+    - name: total_lenders
+      admin_ui: {width: 200}
+      type: number
+    - name: total_lenders_invested
+      admin_ui: {width: 200}
+      type: number
+    - name: total_products_count
+      admin_ui: {width: 200}
+      type: number
   fin_lender_spouse_profession:
     title: fin_lender_spouse_profession
     client: full
@@ -824,6 +871,14 @@ db_schema:
     - name: color
       admin_ui: {width: 200}
       type: string
+  fin_lender_subcategory_loan_issue:
+    client: full
+    server: full
+    columns:
+    - name: lender_subcategory_loan_issue
+      admin_ui: {width: 200, order: 0}
+      type: string
+    title: fin_lender_subcategory_loan_issue
   fin_spouse_profession:
     client: full
     server: full
@@ -943,6 +998,14 @@ db_schema:
       admin_ui: {width: 200, order: 10.5}
       type: number
     title: fin_extends_loan
+  fin_borrower_subcategory_loan_issue:
+    client: full
+    server: full
+    columns:
+    - name: borrower_subcategory_loan_issue
+      admin_ui: {order: 0, width: 280}
+      type: string
+    title: fin_borrower_subcategory_loan_issue
   fin_issue_category:
     client: full
     server: full
@@ -990,13 +1053,13 @@ db_schema:
       admin_ui: {width: 200}
       type: string
   fin_category:
-    title: fin_category
     client: full
     server: full
     columns:
     - name: category
       admin_ui: {width: 200}
       type: string
+    title: fin_category
   fin_user_profile:
     client: full
     server: full
@@ -1452,6 +1515,14 @@ db_schema:
       admin_ui: {width: 200, order: 9}
       type: bool
     title: fin_wallet
+  fin_subcategory_technical_issue:
+    client: full
+    server: full
+    columns:
+    - name: subcategory_technical_issue
+      admin_ui: {width: 200, order: 0}
+      type: string
+    title: fin_subcategory_technical_issue
   fin_product_group:
     client: full
     server: full
@@ -1523,6 +1594,71 @@ db_schema:
     - name: max_amount
       admin_ui: {width: 200}
       type: number
+  fin_handling_collection_process:
+    title: fin_handling_collection_process
+    client: full
+    server: full
+    columns:
+    - name: engineer_id
+      admin_ui: {width: 200}
+      type: number
+    - name: engineer_name
+      admin_ui: {width: 200}
+      type: string
+    - name: engineer_location
+      admin_ui: {width: 200}
+      type: string
+    - name: borrower_customer_id
+      admin_ui: {width: 200}
+      type: number
+    - name: borrower_email
+      admin_ui: {width: 200}
+      type: string
+    - name: borrower_name
+      admin_ui: {width: 200}
+      type: string
+    - name: loan_id
+      admin_ui: {width: 200}
+      type: string
+    - name: product_name
+      admin_ui: {width: 200}
+      type: string
+    - name: loan_status
+      admin_ui: {width: 200}
+      type: string
+    - name: remaining_amount
+      admin_ui: {width: 200}
+      type: number
+    - name: customer_address_1
+      admin_ui: {width: 200}
+      type: string
+    - name: customer_addres_2
+      admin_ui: {width: 200}
+      type: string
+    - name: relatives_name
+      admin_ui: {width: 200}
+      type: string
+    - name: relatives_mobile_no
+      admin_ui: {width: 200}
+      type: number
+    - name: relatives_email
+      admin_ui: {width: 200}
+      type: string
+    - name: relatives_address
+      admin_ui: {width: 200}
+      type: string
+    - name: engineer_mbl_no
+      admin_ui: {width: 200, order: 1.5}
+      type: number
+    - name: engineer_email_id
+      admin_ui: {width: 200, order: 0.5}
+      type: string
+    - name: relatives_relation
+      admin_ui: {width: 200, order: 10.5}
+      type: string
+    - name: borrower_alternate_email
+      admin_ui: {order: 3.75, width: 200}
+      type: string
   fin_borrower_employee_type:
     client: full
     server: full
@@ -1602,6 +1738,32 @@ db_schema:
     - name: borrower_email_id
       admin_ui: {width: 200, order: 21}
       type: string
+  fin_user_issues_bugreports:
+    title: fin_user_issues_bugreports
+    client: full
+    server: full
+    columns:
+    - name: user_issues
+      admin_ui: {width: 200}
+      type: string
+    - name: specific_issue
+      admin_ui: {width: 200}
+      type: string
+    - name: user_discription
+      admin_ui: {width: 200}
+      type: string
+    - name: image
+      admin_ui: {width: 200}
+      type: media
+    - name: feedback_form
+      admin_ui: {width: 200}
+      type: string
+    - name: customer_id
+      admin_ui: {width: 200}
+      type: string
+    - name: email_user
+      admin_ui: {width: 200}
+      type: string
   fin_borrower_profession:
     client: full
     server: full
@@ -1679,6 +1841,9 @@ db_schema:
     - name: email_confirmation_key
       admin_ui: {order: 1.5, width: 200}
       type: string
+    - name: email_verified
+      admin_ui: {width: 200, order: 8}
+      type: bool
     title: Users
 secrets:
   new_key:

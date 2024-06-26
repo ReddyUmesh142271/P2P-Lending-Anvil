@@ -20,6 +20,7 @@ class dashboard(dashboardTemplate):
     self.email = self.email
     self.user_id = self.user_id
     self.load_data(None)
+    self.update_platform_fees()
 
 
     user_profile = app_tables.fin_user_profile.get(customer_id=self.user_id)
@@ -59,6 +60,13 @@ class dashboard(dashboardTemplate):
 
     # Any code you write here will run before the form opens.
 
+  
+  def update_platform_fees(self, **event_args):
+      # Call the server function to update the fees
+      result = anvil.server.call('update_fin_platform_fees')
+      if result is not None:
+          alert(result)
+  
   def load_data(self, status):
     if status == 'closed':
       closed_loans = app_tables.fin_loan_details.search(loan_updated_status=q.like('closed%'), lender_customer_id=self.user_id)

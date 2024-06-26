@@ -1,0 +1,51 @@
+is_package: true
+container: {type: DataRowPanel}
+components:
+- name: label_2
+  properties: {align: center, font_size: 16}
+  type: Label
+  layout_properties: {column: VJQQOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''loan_id'']', writeback: false}
+- name: label_3
+  properties: {align: center, font_size: 16}
+  type: Label
+  layout_properties: {column: OJLQEN}
+  data_bindings:
+  - {property: text, code: 'self.item[''borrower_name'']', writeback: false}
+- name: link_1
+  properties: {align: center, font_size: 16, bold: true}
+  type: Link
+  layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''emi_number'']', writeback: false}
+  event_bindings: {click: link_1_click}
+- name: label_1
+  properties: {font_size: 16}
+  type: Label
+  layout_properties: {column: YCYGMJ}
+  data_bindings:
+  - {property: text, code: 'self.item[''lender_name'']', writeback: false}
+- name: label_4
+  properties: {align: center, font_size: 16}
+  type: Label
+  layout_properties: {column: ZNPGLS}
+  data_bindings:
+  - {property: text, code: 'self.item[''amount_paid'']', writeback: false}
+- name: label_5
+  properties: {align: center, font_size: 16}
+  type: Label
+  layout_properties: {column: SUHPFT}
+  data_bindings:
+  - {property: text, code: 'self.item[''total_remaining_amount'']', writeback: false}
+- name: label_6
+  properties: {align: center, font_size: 16}
+  type: Label
+  layout_properties: {column: PPSSSZ}
+  data_bindings:
+  - {property: text, code: 'self.item[''remaining_tenure'']', writeback: false}
+- name: link_2
+  properties: {text: View Receipt, align: center, font_size: 16, bold: true}
+  type: Link
+  layout_properties: {column: AGDOUA}
+  event_bindings: {click: link_2_click}

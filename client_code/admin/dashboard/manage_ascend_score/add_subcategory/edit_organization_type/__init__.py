@@ -48,7 +48,7 @@ class edit_organization_type(edit_organization_typeTemplate):
           group_name="organization_type", max_points=max_points)
 
       alert("Changes saved successfully!")
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def delete_click(self, **event_args):
     """This method is called when the Delete button is clicked"""
@@ -69,7 +69,7 @@ class edit_organization_type(edit_organization_typeTemplate):
           group_name="organization_type", max_points=max_points)
 
       # Optionally, navigate to a different form or perform other actions
-      open_form('admin.dashboard.manage_ascend.add_subcategory')
+      open_form('admin.dashboard.manage_ascend_score.add_subcategory')
 
   def home_button(self, **event_args):
     """This method is called when the button is clicked"""
@@ -77,4 +77,4 @@ class edit_organization_type(edit_organization_typeTemplate):
 
   def button_1_copy_3_click(self, **event_args):
     """Cancel button click event"""
-    open_form('admin.dashboard.manage_ascend.add_subcategory')
+    open_form('admin.dashboard.manage_ascend_score.add_subcategory')

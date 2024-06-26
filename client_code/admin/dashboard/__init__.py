@@ -12,9 +12,15 @@ class dashboard(dashboardTemplate):
   def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.update_platform_fees()
 
  
-
+  def update_platform_fees(self, **event_args):
+      # Call the server function to update the fees
+      result = anvil.server.call('update_fin_platform_fees')
+      if result is not None:
+          alert(result)
+  
   def button_2_click(self, **event_args):
    
     open_form('admin.dashboard.loan_servicing')

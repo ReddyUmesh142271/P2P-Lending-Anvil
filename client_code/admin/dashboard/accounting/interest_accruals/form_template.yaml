@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"ZDWBBO":2,"YFUOMK":56,"JYFSPI":2}'}
 components:
 - name: home_button_admin_1_copy
   properties: {}
@@ -18,13 +18,17 @@ components:
   properties: {height: '10'}
   type: Spacer
   layout_properties: {grid_position: 'JDGVSK,DPCMXA'}
+- name: spacer_5
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'SDGLJB,ZDWBBO', full_width_row: true}
 - name: data_grid_1
   properties:
     columns:
     - {id: JKSDUP, title: User Photo, data_key: column_1}
     - {id: VJQQOR, title: Customer Id, data_key: column_2}
     - {id: ZCXZLK, data_key: column_1, title: 'Lender Name '}
-    - {id: OJLQEN, title: Membership Type, data_key: column_3}
+    - {id: OJLQEN, title: Membership Type, data_key: column_3, width: 180.77777099609375, expand: false}
     - {id: WJZUDX, data_key: column_2, title: Lending Type, width: 209.5555419921875, expand: false}
     - {id: PSRGKR, data_key: column_3, title: lender total commitsment, width: 159.7777099609375, expand: true}
     - {id: PVDJJD, data_key: column_1, title: Interest Accruals}
@@ -35,11 +39,15 @@ components:
   - name: repeating_panel_1
     properties: {item_template: admin.dashboard.accounting.interest_accruals.RowTemplate50}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'BVYUBB,EEVVXP', full_width_row: true}
+  layout_properties: {grid_position: 'SDGLJB,YFUOMK', full_width_row: true}
+- name: spacer_4
+  properties: {height: 32}
+  type: Spacer
+  layout_properties: {grid_position: 'SDGLJB,JYFSPI', full_width_row: true}
 - name: spacer_3
   properties: {height: '15'}
   type: Spacer
-  layout_properties: {grid_position: 'OLYJZC,NRKSJC YERBQE,FEDIOE'}
+  layout_properties: {grid_position: ''}
 - name: button_1
   properties: {text: Back, bold: true, foreground: white, role: filled-button, icon: 'fa:angle-double-left', background: '#05264d'}
   type: Button
